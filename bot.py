@@ -52,7 +52,8 @@ async def info(user: discord.Member):
 	gamePlaying = user.game
 
 	embedInfo = discord.Embed(title = "User info:")
-	embedInfo.add_field()
+	embedInfo.add_field(name = "Username:", value = username, inline = True)
+	embedInfo.add_field(name = "Nickname:", value = nickname, inline = True)
 	await bot.say(embed = embedInfo)
 	
 
