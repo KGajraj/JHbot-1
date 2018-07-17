@@ -8,7 +8,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-bot = commands.Bot(command_prefix = "=")
+bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
 
 print("-----------------------------")
@@ -16,7 +16,7 @@ print("Loading...")
 
 @bot.event
 async def on_ready():
-	await bot.change_presence(game = discord.Game(name = "15 Hours", url = "http://www.jhgs.bucks.sch.uk/", type = 1))
+	await bot.change_presence(game=discord.Game(name="15 Hours"))
 	print("Running")
 	print("Bot username: " + bot.user.name)
 	print("Bot user ID: " + bot.user.id)
@@ -25,38 +25,35 @@ async def on_ready():
 
 @bot.command()
 async def help():
-	embedHelp = discord.Embed(
-		title = "Commands",
-		colour = 0xFFFFFF
-	)
-
-	embedHelp.set_author(name = "JHbot", icon_url = "http://niconiconii.co.uk/swan.jpg")
-	embedHelp.add_field(name = "=help", value = "Show this", inline = False)
-	embedHelp.add_field(name = "=info", value = "Tells you info about a user (att them)", inline = False)
-	# embedHelp.add_field(name = "#depression", value = "Depression test", inline = False)
-	await bot.say(embed = embedHelp)
+	embedHelp = discord.Embed(title="Commands", colour=0xFFFFFF)
+	embedHelp.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
+	embedHelp.add_field(name="=help", value="Show this", inline=False)
+	embedHelp.add_field(name="=info", value="Tells you info about a user (att them)", inline=False)
+	await bot.say(embed=embedHelp)
 
 
 @bot.command()
 async def info(user: discord.Member):
-	
-	# await bot.say("The username is: {}".format(user.name))
-	# await bot.say("User ID: {}".format(user.id))
-	# await bot.say("User status: {}".format(user.status))
-	# await bot.say("User joined: {}".format(user.joined_at))
-	
 	userColour = user.colour
 	username = user.name
 	nickname = user.nick
 	joinDate = user.joined_at
-	gamePlaying = user.game
+	madeDate = user.created_at
+	profilePicture = user.avatar_url
 
-	embedInfo = discord.Embed(title = "User info:")
-	embedInfo.add_field(name = "Username:", value = username, inline = True)
-	embedInfo.add_field(name = "Nickname:", value = nickname, inline = True)
-	await bot.say(embed = embedInfo)
+	embedInfo = discord.Embed(colour=userColour, thumbnail=profilePicture) # Thumbnail doesn't work, cba to fix it for now
+	embedInfo.add_field(name="Username:", value=username, inline=False)	
+	embedInfo.add_field(name="Nickname:", value=nickname, inline=False)
+	embedInfo.add_field(name="Join date:", value=joinDate, inline=False)
+	embedInfo.add_field(name="Account create date:", value=madeDate, inline=False)
+
+	await bot.say(embed=embedInfo)
 	
 
+@bot.command()
+async def github():
+	embedGithub = discord.Embed(title="Bot Github", url="https://github.com/jstri/JHbot")
+	await boy.say(embed=embedGithub)
 
 @bot.command()
 async def depression():
@@ -78,11 +75,11 @@ async def depression():
 			"Ive been feeling cheerful"
 		]
 
-		embedDepression = discord.Embed(title = "Commands", colour = 0xFFFFFF)
+		embedDepression = discord.Embed(title="Commands", colour=0xFFFFFF)
 		embedDepression.clear_fields()
 		
 		embedDepression.set_footer()
-		embedDepression.add_field(name = questions[i], value = "1: none of the time, 4: all of the time")
+		embedDepression.add_field(name=questions[i], value="1: none of the time, 4: all of the time")
 		await bot.say(embed = embedDepression)
 
 		#discord.on_message
@@ -95,5 +92,10 @@ async def echo(*args):
 		output = output + " "
 	await bot.say(output)
 
+
+@bot.command(pass_context=True)
+async def parking(ctx):
+	channel = ctx.message.channel
+	await bot.send_file(channel, 'images/gerogParking.jpg')
 
 bot.run(tokenVar)
