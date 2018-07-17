@@ -11,13 +11,12 @@ from discord.ext.commands import Bot
 bot = commands.Bot(command_prefix = "=")
 bot.remove_command("help")
 
-print("")
+print("-----------------------------")
 print("Loading...")
-print("")
 
 @bot.event
 async def on_ready():
-	await bot.change_status(game=discord.Game(name="15 Hours"))
+	await bot.change_presence(game = discord.Game(name = "15 Hours", url = "http://www.jhgs.bucks.sch.uk/", type = 1))
 	print("Running")
 	print("Bot username: " + bot.user.name)
 	print("Bot user ID: " + bot.user.id)
@@ -32,24 +31,30 @@ async def help():
 	)
 
 	embedHelp.set_author(name = "JHbot", icon_url = "http://niconiconii.co.uk/swan.jpg")
-	embedHelp.add_field(name = "#help", value = "Show this", inline = False)
-	embedHelp.add_field(name = "#ping", value = "wtf u think it does lool", inline = False)
+	embedHelp.add_field(name = "=help", value = "Show this", inline = False)
+	embedHelp.add_field(name = "=info", value = "Tells you info about a user (att them)", inline = False)
 	# embedHelp.add_field(name = "#depression", value = "Depression test", inline = False)
 	await bot.say(embed = embedHelp)
 
 
 @bot.command()
-async def ping():
-	await bot.say("Pong")
-	userid = ctx.message.author.id
+async def info(user: discord.Member):
+	
+	# await bot.say("The username is: {}".format(user.name))
+	# await bot.say("User ID: {}".format(user.id))
+	# await bot.say("User status: {}".format(user.status))
+	# await bot.say("User joined: {}".format(user.joined_at))
+	
+	userColour = user.colour
+	username = user.name
+	nickname = user.nick
+	joinDate = user.joined_at
+	gamePlaying = user.game
 
-
-@bot.command(pass_context = True)
-async def info(ctx, user: discord.Member):
-	await bot.say("The username is: {}".format(user.name))
-	await bot.say("User ID: {}".format(user.id))
-	await bot.say("User status: {}".format(user.status))
-	await bot.say("User joined: {}".format(user.joined_at))
+	embedInfo = discord.Embed(title = "User info:")
+	embedInfo.add_field()
+	await bot.say(embed = embedInfo)
+	
 
 
 @bot.command()
