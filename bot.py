@@ -44,11 +44,12 @@ async def info(user: discord.Member):
 	madeDate = user.created_at
 	profilePicture = user.avatar_url
 
-	embedInfo = discord.Embed(colour=userColour, thumbnail=profilePicture) # Thumbnail doesn't work, cba to fix it for now
+	embedInfo = discord.Embed(colour=userColour) # Thumbnail doesn't work, cba to fix it for now
 	embedInfo.add_field(name="Username:", value=username + "#" + userDisc, inline=False)	
 	embedInfo.add_field(name="Nickname:", value=nickname, inline=False)
 	embedInfo.add_field(name="Join date:", value=joinDate, inline=False)
 	embedInfo.add_field(name="Account create date:", value=madeDate, inline=False)
+	embedInfo.thumbnail(url=profilePicture)
 
 	await bot.say(embed=embedInfo)
 	
