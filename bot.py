@@ -27,9 +27,10 @@ async def on_ready():
 async def help():
 	embedHelp = discord.Embed(title="Commands", colour=0xFFFFFF)
 	embedHelp.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
-	embedHelp.add_field(name="!help", value="Show this", inline=False)
-	embedHelp.add_field(name="!info", value="Tells you info about a user (att them)", inline=False)
-	embedHelp.add_field(name="!github", value="Bot source code", inline=False)
+	embedHelp.add_field(name="help", value="Show this", inline=False)
+	embedHelp.add_field(name="info", value="Tells you info about a user (att them)", inline=False)
+	embedHelp.add_field(name="github", value="Bot source code", inline=False)
+	embedHelp.add_field(name="img", value="Sends an image", inline=False)
 	await bot.say(embed=embedHelp)
 
 
@@ -37,13 +38,14 @@ async def help():
 async def info(user: discord.Member):
 	userColour = user.colour
 	username = user.name
+	userDisc = user.discriminator
 	nickname = user.nick
 	joinDate = user.joined_at
 	madeDate = user.created_at
 	profilePicture = user.avatar_url
 
 	embedInfo = discord.Embed(colour=userColour, thumbnail=profilePicture) # Thumbnail doesn't work, cba to fix it for now
-	embedInfo.add_field(name="Username:", value=username, inline=False)	
+	embedInfo.add_field(name="Username:", value=username + "#" + userDisc, inline=False)	
 	embedInfo.add_field(name="Nickname:", value=nickname, inline=False)
 	embedInfo.add_field(name="Join date:", value=joinDate, inline=False)
 	embedInfo.add_field(name="Account create date:", value=madeDate, inline=False)
@@ -95,8 +97,14 @@ async def echo(*args):
 
 
 @bot.command(pass_context=True)
-async def parking(ctx):
+async def img(ctx, image: str):
 	channel = ctx.message.channel
-	await bot.send_file(channel, 'images/gerogParking.jpg')
+	if image == "":
+		await bot.say("No image specified")
+	elif image == "parking":
+		await bot.send_file(channel, 'images/gerogParking.jpg')	
+	else:
+		await bot.say("Image does not exist")
+
 
 bot.run(tokenVar)
