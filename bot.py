@@ -27,8 +27,9 @@ async def on_ready():
 async def help():
 	embedHelp = discord.Embed(title="Commands", colour=0xFFFFFF)
 	embedHelp.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
-	embedHelp.add_field(name="=help", value="Show this", inline=False)
-	embedHelp.add_field(name="=info", value="Tells you info about a user (att them)", inline=False)
+	embedHelp.add_field(name="!help", value="Show this", inline=False)
+	embedHelp.add_field(name="!info", value="Tells you info about a user (att them)", inline=False)
+	embedHelp.add_field(name="!github", value="Bot source code", inline=False)
 	await bot.say(embed=embedHelp)
 
 
@@ -52,8 +53,8 @@ async def info(user: discord.Member):
 
 @bot.command()
 async def github():
-	embedGithub = discord.Embed(title="Bot Github", url="https://github.com/jstri/JHbot")
-	await boy.say(embed=embedGithub)
+	embedGithub = discord.Embed(title="Github source code", url="https://github.com/jstri/JHbot")
+	await bot.say(embed=embedGithub)
 
 @bot.command()
 async def depression():
