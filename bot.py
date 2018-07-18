@@ -106,5 +106,5 @@ async def img(ctx, image: str):
 	else:
 		await bot.say("Image does not exist")
 
-
+		
 bot.run(tokenVar)
