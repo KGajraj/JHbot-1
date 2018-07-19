@@ -118,7 +118,6 @@ async def echo(message: str):
 	await bot.say(message)
 
 
-
 @bot.command(pass_context=True)
 async def img(ctx, image: str):
 	try:
@@ -126,13 +125,6 @@ async def img(ctx, image: str):
 		await bot.send_file(channel, "images/" + image + ".jpg")
 	except:
 		await bot.say("Image not found")
-"""
-Images:
-parking (george parking)
-smooth (heple being smooth)
-gated (boult yugi)
-eating (kieran being fat as usual)
-"""
 
 		
 bot.run(tokenVar)
