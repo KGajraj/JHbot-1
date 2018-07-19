@@ -46,6 +46,11 @@ async def ping():
 
 
 @bot.command()
+async def echo(*, content:str):
+    await bot.say(content)
+
+
+@bot.command()
 async def info(user: discord.Member):
 	userColour = user.colour
 	username = user.name
@@ -71,39 +76,32 @@ async def github():
 	embedGithub = discord.Embed(title="Github source code", url="https://github.com/jstri/JHbot")
 	await bot.say(embed=embedGithub)
 
-@bot.command()
-async def depression():
-	for i in range(14):
-		questions = [
-			"Ive been feeling optimistic about the future",
-			"Ive been feeling useful",
-			"Ive been feeling relaxed",
-			"Ive been feeling interested in other people",
-			"Ive had energy to spare",
-			"Ive been dealing with problems well",
-			"Ive been thinking clearly",
-			"Ive been feeling good about myself",
-			"Ive been feeling close to other people",
-			"Ive been feeling confident",
-			"Ive been able to make up my mind abut things",
-			"Ive been feeling loved",
-			"Ive been interested in new things",
-			"Ive been feeling cheerful"
-		]
+# @bot.command()
+# async def depression():
+# 	for i in range(14):
+# 		questions = [
+# 			"Ive been feeling optimistic about the future",
+# 			"Ive been feeling useful",
+# 			"Ive been feeling relaxed",
+# 			"Ive been feeling interested in other people",
+# 			"Ive had energy to spare",
+# 			"Ive been dealing with problems well",
+# 			"Ive been thinking clearly",
+# 			"Ive been feeling good about myself",
+# 			"Ive been feeling close to other people",
+# 			"Ive been feeling confident",
+# 			"Ive been able to make up my mind abut things",
+# 			"Ive been feeling loved",
+# 			"Ive been interested in new things",
+# 			"Ive been feeling cheerful"
+# 		]
 
-		embedDepression = discord.Embed(title="Commands", colour=0xFFFFFF)
-		embedDepression.clear_fields()
+# 		embedDepression = discord.Embed(title="Commands", colour=0xFFFFFF)
+# 		embedDepression.clear_fields()
 		
-		embedDepression.set_footer()
-		embedDepression.add_field(name=questions[i], value="1: none of the time, 4: all of the time")
-		await bot.say(embed = embedDepression)
-
-		#discord.on_message
-
-
-@bot.command()
-async def echo(message: str):
-	await bot.say(message)
+# 		embedDepression.set_footer()
+# 		embedDepression.add_field(name=questions[i], value="1: none of the time, 4: all of the time")
+# 		await bot.say(embed = embedDepression)
 
 
 @bot.command(pass_context=True)
