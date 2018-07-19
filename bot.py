@@ -44,12 +44,13 @@ async def info(user: discord.Member):
 	madeDate = user.created_at
 	profilePicture = user.avatar_url
 
-	embedInfo = discord.Embed(colour=userColour) # Thumbnail doesn't work, cba to fix it for now
-	embedInfo.add_field(name="Username:", value=username + "#" + userDisc, inline=False)	
-	embedInfo.add_field(name="Nickname:", value=nickname, inline=False)
-	embedInfo.add_field(name="Join date:", value=joinDate, inline=False)
-	embedInfo.add_field(name="Account create date:", value=madeDate, inline=False)
-	embedInfo.thumbnail(url=profilePicture)
+	embedInfo = discord.Embed()
+	embedInfo.colour = userColour
+	embedInfo.add_field(name="Username:", value=username + "#" + userDisc, inline=True)	
+	embedInfo.add_field(name="Nickname:", value=nickname, inline=True)
+	embedInfo.add_field(name="Join date:", value=joinDate, inline=True)
+	embedInfo.add_field(name="Account create date:", value=madeDate, inline=True)
+	embedInfo.set_thumbnail(url=profilePicture)
 
 	await bot.say(embed=embedInfo)
 	
@@ -88,24 +89,24 @@ async def depression():
 
 		#discord.on_message
 
-@bot.command()
-async def echo(*args):
-	output = ""
-	for word in args:
-		output = output + word
-		output = output + " "
-	await bot.say(output)
-
 
 @bot.command(pass_context=True)
 async def img(ctx, image: str):
 	channel = ctx.message.channel
+	image = str(ctx)
 	if image == "":
 		await bot.say("No image specified")
 	elif image == "parking":
-		await bot.send_file(channel, 'images/gerogParking.jpg')	
+		await bot.send_file(channel, "images/" + ctx + ".jpg")
 	else:
 		await bot.say("Image does not exist")
+"""
+Images:
+parking (george parking)
+smooth (heple being smooth)
+gated (boult yugi)
+eating (kieran being fat as usual)
+"""
 
 		
 bot.run(tokenVar)
