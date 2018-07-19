@@ -23,18 +23,6 @@ async def on_ready():
 	print("-----------------------------")
 
 
-# @bot.event()
-# async def on_member_join(member):
-# 	userJoined = member.mention
-# 	await bot.say(userJoined + " has joined the server")
-
-
-# @bot.event()
-# async def on_member_remove(member):
-# 	userLeft = member.mention
-# 	await bot.say(userLeft + " has left the seerver")
-
-
 @bot.group(pass_context=True)
 async def help(ctx):
 	if ctx.invoked_subcommand is None:
@@ -126,5 +114,5 @@ async def img(ctx, image: str):
 	except:
 		await bot.say("Image not found")
 
-		
+
 bot.run(tokenVar)
