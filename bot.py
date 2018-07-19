@@ -113,4 +113,12 @@ async def img(ctx, image: str):
 		await bot.say("Image not found")
 
 
+@bot.command(pass_context=True)
+async def graphics(ctx):
+    channel = ctx.message.channel
+    await bot.send_file(channel, "images/graphics1.jpg")
+    await bot.send_file(channel, "images/graphics2.jpg")
+    await bot.send_file(channel, "images/graphics3.jpg")
+
+
 bot.run(tokenVar)
