@@ -2,7 +2,7 @@
 
 import sys
 import asyncio
-from tokenfile import tokenVar
+from tokenFile import tokenVar
 
 import discord
 from discord.ext import commands
