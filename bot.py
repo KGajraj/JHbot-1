@@ -23,15 +23,38 @@ async def on_ready():
 	print("-----------------------------")
 
 
+# @bot.event()
+# async def on_member_join(member):
+# 	userJoined = member.mention
+# 	await bot.say(userJoined + " has joined the server")
+
+
+# @bot.event()
+# async def on_member_remove(member):
+# 	userLeft = member.mention
+# 	await bot.say(userLeft + " has left the seerver")
+
+
+@bot.group(pass_context=True)
+async def help(ctx):
+	if ctx.invoked_subcommand is None:
+		embedHelp = discord.Embed(title="Commands", colour=0xFFFFFF)
+		embedHelp.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
+		embedHelp.add_field(name="help", value="Show this", inline=False)
+		embedHelp.add_field(name="info", value="Tells you info about a user (att them)", inline=False)
+		embedHelp.add_field(name="github", value="Bot source code", inline=False)
+		embedHelp.add_field(name="img", value="Sends an image", inline=False)
+		await bot.say(embed=embedHelp)
+
+@help.command()
+async def img():
+	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating", colour=0xFFFFFF)
+	embedHelpImg.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
+	await bot.say(embed=embedHelpImg)
+
 @bot.command()
-async def help():
-	embedHelp = discord.Embed(title="Commands", colour=0xFFFFFF)
-	embedHelp.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
-	embedHelp.add_field(name="help", value="Show this", inline=False)
-	embedHelp.add_field(name="info", value="Tells you info about a user (att them)", inline=False)
-	embedHelp.add_field(name="github", value="Bot source code", inline=False)
-	embedHelp.add_field(name="img", value="Sends an image", inline=False)
-	await bot.say(embed=embedHelp)
+async def ping():
+	await bot.say("Pong!")
 
 
 @bot.command()
@@ -53,7 +76,7 @@ async def info(user: discord.Member):
 	embedInfo.set_thumbnail(url=profilePicture)
 
 	await bot.say(embed=embedInfo)
-	
+
 
 @bot.command()
 async def github():
@@ -90,16 +113,19 @@ async def depression():
 		#discord.on_message
 
 
+@bot.command()
+async def echo(message: str):
+	await bot.say(message)
+
+
+
 @bot.command(pass_context=True)
 async def img(ctx, image: str):
-	channel = ctx.message.channel
-	image = str(ctx)
-	if image == "":
-		await bot.say("No image specified")
-	elif image == "parking":
-		await bot.send_file(channel, "images/" + ctx + ".jpg")
-	else:
-		await bot.say("Image does not exist")
+	try:
+		channel = ctx.message.channel
+		await bot.send_file(channel, "images/" + image + ".jpg")
+	except:
+		await bot.say("Image not found")
 """
 Images:
 parking (george parking)
