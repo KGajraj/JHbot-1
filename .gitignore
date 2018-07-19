@@ -1,0 +1,5 @@
+tokenfile.py
+ftp.py
+.vscode
+__pycache__
+.gitignore
