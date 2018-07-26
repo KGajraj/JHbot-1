@@ -71,6 +71,23 @@ async def info(user: discord.Member):
 	await bot.say(embed=embedInfo)
 
 
+@bot.command(pass_context=True)
+async def serverinfo(ctx):
+    server = ctx.message.server 
+    pic = server.icon_url
+    memberCount = server.member_count
+    createDate = server.created_at
+    name = server.name
+
+    embedServer = discord.Embed()
+    embedServer.add_field(name="Server name: ", value=name)
+    embedServer.add_field(name="Members: ", value=memberCount)
+    embedServer.add_field(name="Created on: ", value=createDate)
+    embedServer.set_thumbnail(url=pic)
+	
+    await bot.say(embed=embedServer)
+
+
 @bot.command()
 async def github():
 	embedGithub = discord.Embed(title="Github source code", url="https://github.com/jstri/JHbot")
