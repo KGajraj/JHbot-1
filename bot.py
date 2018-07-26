@@ -23,6 +23,19 @@ async def on_ready():
 	print("-----------------------------")
 
 
+@bot.event
+async def on_message_edit(msgB, msgA):
+    user = msgB.author.name
+    msgBefore = msgB.content
+    msgAfter = msgA.content
+    if msgBefore != msgAfter:
+        embedEdit = discord.Embed(title="Message edited by " + user)
+        embedEdit.colour = 0xffff00
+        embedEdit.add_field(name="Before", value=msgBefore, inline=False)
+        embedEdit.add_field(name="After", value=msgAfter, inline=False)
+        await bot.send_message(msgB.server.default_channel, embed=embedEdit)
+
+
 @bot.group(pass_context=True)
 async def help(ctx):
 	if ctx.invoked_subcommand is None:
