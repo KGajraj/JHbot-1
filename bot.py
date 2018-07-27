@@ -40,6 +40,24 @@ async def img():
 	embedHelpImg.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
 	await bot.say(embed=embedHelpImg)
 
+
+@bot.event
+async def on_message_edit(msgB, msgA):
+    global embedEdit
+    user = msgB.author.name
+    msgBefore = msgB.content
+    msgAfter = msgA.content
+    if msgBefore != msgAfter:
+        embedEdit = discord.Embed(title="Message edited by " + user)
+        embedEdit.colour = 0xffff00
+        embedEdit.add_field(name="Before", value=msgBefore, inline=False)
+        embedEdit.add_field(name="After", value=msgAfter, inline=False)
+
+@bot.command()
+async def edit():
+    await bot.say(embed=embedEdit)
+
+# Bot replies "Pong!"
 @bot.command()
 async def ping():
 	await bot.say("Pong!")
