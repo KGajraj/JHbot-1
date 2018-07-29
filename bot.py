@@ -48,21 +48,21 @@ async def img():
 
 @bot.event
 async def on_message_edit(msgB, msgA):
-    global embedEdit
-    user = msgB.author.name
+	global embedEdit
+	user = msgB.author.name
 	pfp = msgB.author.avatar_url
-    msgBefore = msgB.content
-    msgAfter = msgA.content
-    if msgBefore != msgAfter:
-        embedEdit = discord.Embed(title="Message edited by " + user)
+	msgBefore = msgB.content
+	msgAfter = msgA.content
+	if msgBefore != msgAfter:
+		embedEdit = discord.Embed(title="Message edited by " + user)
 		embedEdit.set_author(name="JHbot", icon_url=pfp)
-        embedEdit.colour = 0xffff00
-        embedEdit.add_field(name="Before", value=msgBefore, inline=False)
-        embedEdit.add_field(name="After", value=msgAfter, inline=False)
-
+		embedEdit.colour = 0xffff00
+		embedEdit.add_field(name="Before", value=msgBefore, inline=False)
+		embedEdit.add_field(name="After", value=msgAfter, inline=False)
+	
 @bot.command()
 async def edit():
-    await bot.say(embed=embedEdit)
+	await bot.say(embed=embedEdit)
 
 # Bot replies "Pong!"
 @bot.command()
@@ -72,7 +72,7 @@ async def ping():
 
 @bot.command()
 async def echo(*, content:str):
-    await bot.say(content)
+	await bot.say(content)
 
 
 @bot.command()
@@ -98,19 +98,19 @@ async def info(user: discord.Member):
 
 @bot.command(pass_context=True)
 async def serverinfo(ctx):
-    server = ctx.message.server 
-    pic = server.icon_url
-    memberCount = server.member_count
-    createDate = server.created_at
-    name = server.name
+	server = ctx.message.server 
+	pic = server.icon_url
+	memberCount = server.member_count
+	createDate = server.created_at
+	name = server.name
 
-    embedServer = discord.Embed()
-    embedServer.add_field(name="Server name: ", value=name)
-    embedServer.add_field(name="Members: ", value=memberCount)
-    embedServer.add_field(name="Created on: ", value=createDate)
-    embedServer.set_thumbnail(url=pic)
+	embedServer = discord.Embed()
+	embedServer.add_field(name="Server name: ", value=name)
+	embedServer.add_field(name="Members: ", value=memberCount)
+	embedServer.add_field(name="Created on: ", value=createDate)
+	embedServer.set_thumbnail(url=pic)
 	
-    await bot.say(embed=embedServer)
+	await bot.say(embed=embedServer)
 
 
 @bot.command()
@@ -157,10 +157,10 @@ async def img(ctx, image: str):
 
 @bot.command(pass_context=True)
 async def graphics(ctx):
-    channel = ctx.message.channel
-    await bot.send_file(channel, "images/graphics/graphics1.jpg")
-    await bot.send_file(channel, "images/graphics/graphics2.jpg")
-    await bot.send_file(channel, "images/graphics/graphics3.jpg")
+	channel = ctx.message.channel
+	await bot.send_file(channel, "images/graphics/graphics1.jpg")
+	await bot.send_file(channel, "images/graphics/graphics2.jpg")
+	await bot.send_file(channel, "images/graphics/graphics3.jpg")
 
 
 bot.run(tokenVar)
