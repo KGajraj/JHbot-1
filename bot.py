@@ -35,12 +35,13 @@ async def help(ctx):
 		embedHelp.add_field(name="serverinfo", value="Info about the server", inline=False)
 		embedHelp.add_field(name="edit", value="Most recently edited message", inline=False)
 		embedHelp.add_field(name="img", value="Sends an image", inline=False)
+		embedHelp.add_field(name="graphics", value="Graphics", inline=False)
 		embedHelp.add_field(name="github", value="Bot code", inline=False)
 		await bot.say(embed=embedHelp)
 
 @help.command()
 async def img():
-	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating, morning, smug", colour=0xFFFFFF)
+	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating, morning, smug, artery1, artery2", colour=0xFFFFFF)
 	embedHelpImg.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
 	await bot.say(embed=embedHelpImg)
 
@@ -155,9 +156,9 @@ async def img(ctx, image: str):
 @bot.command(pass_context=True)
 async def graphics(ctx):
     channel = ctx.message.channel
-    await bot.send_file(channel, "images/graphics1.jpg")
-    await bot.send_file(channel, "images/graphics2.jpg")
-    await bot.send_file(channel, "images/graphics3.jpg")
+    await bot.send_file(channel, "images/graphics/graphics1.jpg")
+    await bot.send_file(channel, "images/graphics/graphics2.jpg")
+    await bot.send_file(channel, "images/graphics/graphics3.jpg")
 
 
 bot.run(tokenVar)
