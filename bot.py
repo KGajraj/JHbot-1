@@ -50,10 +50,12 @@ async def img():
 async def on_message_edit(msgB, msgA):
     global embedEdit
     user = msgB.author.name
+	pfp = msgB.author.avatar_url
     msgBefore = msgB.content
     msgAfter = msgA.content
     if msgBefore != msgAfter:
         embedEdit = discord.Embed(title="Message edited by " + user)
+		embedEdit.set_author(name="JHbot", icon_url=pfp)
         embedEdit.colour = 0xffff00
         embedEdit.add_field(name="Before", value=msgBefore, inline=False)
         embedEdit.add_field(name="After", value=msgAfter, inline=False)
