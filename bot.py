@@ -156,7 +156,7 @@ async def github():
 async def img(ctx, image: str):
 	try:
 		channel = ctx.message.channel
-		await bot.send_file(channel, "images/" + image + ".jpg")
+		await bot.send_file(channel, "media/" + image + ".jpg")
 	except:
 		await bot.say("Image not found")
 
