@@ -31,6 +31,7 @@ async def help(ctx):
 		embedHelp.add_field(name="help", value="Show this", inline=False)
 		embedHelp.add_field(name="ping", value="pong", inline=False)
 		embedHelp.add_field(name="echo", value="Repeats what you said", inline=False)
+		embedHelp.add_field(name="tron", value="tron.mp3", inline=True)
 		embedHelp.add_field(name="info", value="Tells you info about a user (att them)", inline=False)
 		embedHelp.add_field(name="serverinfo", value="Info about the server", inline=False)
 		embedHelp.add_field(name="edit", value="Most recently edited message", inline=False)
@@ -41,7 +42,7 @@ async def help(ctx):
 
 @help.command()
 async def img():
-	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating, morning, smug, artery1, artery2", colour=0xFFFFFF)
+	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating, morning, smug, artery1, artery2, spaghetti", colour=0xFFFFFF)
 	embedHelpImg.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
 	await bot.say(embed=embedHelpImg)
 
@@ -74,6 +75,11 @@ async def ping():
 async def echo(*, content:str):
 	await bot.say(content)
 
+
+@bot.command()
+async def tron():
+	
+	await bot.play_audio
 
 @bot.command()
 async def info(user: discord.Member):
