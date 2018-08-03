@@ -164,9 +164,9 @@ async def img(ctx, image: str):
 @bot.command(pass_context=True)
 async def graphics(ctx):
 	channel = ctx.message.channel
-	await bot.send_file(channel, "images/graphics/graphics1.jpg")
-	await bot.send_file(channel, "images/graphics/graphics2.jpg")
-	await bot.send_file(channel, "images/graphics/graphics3.jpg")
+	await bot.send_file(channel, "media/graphics/graphics1.jpg")
+	await bot.send_file(channel, "media/graphics/graphics2.jpg")
+	await bot.send_file(channel, "media/graphics/graphics3.jpg")
 
 
 bot.run(tokenVar)
