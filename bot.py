@@ -23,6 +23,8 @@ async def on_ready():
 	print("-----------------------------")
 
 
+
+
 @bot.group(pass_context=True)
 async def help(ctx):
 	if ctx.invoked_subcommand is None:
@@ -168,5 +170,10 @@ async def graphics(ctx):
 	await bot.send_file(channel, "media/graphics/graphics2.jpg")
 	await bot.send_file(channel, "media/graphics/graphics3.jpg")
 
+
+@bot.command(pass_context=True)
+async def tron(ctx):
+	channel = ctx.message.channel
+	await bot.send_file(channel, "media/TRON_beginning.mp3")
 
 bot.run(tokenVar)
