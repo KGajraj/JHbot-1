@@ -106,6 +106,7 @@ async def info(user: discord.Member):
 
 @bot.command(pass_context=True)
 async def serverinfo(ctx):
+async def serverinfo(ctx):
 	server = ctx.message.server 
 	pic = server.icon_url
 	memberCount = server.member_count
@@ -122,7 +123,7 @@ async def serverinfo(ctx):
 
 
 @bot.command()
-async def github():
+async def source():
 	embedGithub = discord.Embed(title="Github source code", url="https://github.com/jstri/JHbot")
 	await bot.say(embed=embedGithub)
 
