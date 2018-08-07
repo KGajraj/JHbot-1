@@ -78,10 +78,10 @@ async def echo(*, content:str):
 	await bot.say(content)
 
 
-@bot.command()
-async def tron():
+# @bot.command()
+# async def tron():
 	
-	await bot.play_audio
+# 	await bot.play_audio
 
 @bot.command()
 async def info(user: discord.Member):
