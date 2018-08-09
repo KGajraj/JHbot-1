@@ -1,12 +1,12 @@
-# JHbot by Jay
+# Discord Bot
 
+import os
 import sys
 import asyncio
-from tokenFile import tokenVar
-
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+from tokenFile import tokenVar
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
@@ -21,8 +21,6 @@ async def on_ready():
 	print("Bot username: " + bot.user.name)
 	print("Bot user ID: " + bot.user.id)
 	print("-----------------------------")
-
-
 
 
 @bot.group(pass_context=True)
@@ -72,16 +70,9 @@ async def edit():
 async def ping():
 	await bot.say("Pong!")
 
-
 @bot.command()
 async def echo(*, content:str):
 	await bot.say(content)
-
-
-# @bot.command()
-# async def tron():
-	
-# 	await bot.play_audio
 
 @bot.command()
 async def info(user: discord.Member):
@@ -103,9 +94,7 @@ async def info(user: discord.Member):
 
 	await bot.say(embed=embedInfo)
 
-
 @bot.command(pass_context=True)
-async def serverinfo(ctx):
 async def serverinfo(ctx):
 	server = ctx.message.server 
 	pic = server.icon_url
@@ -176,5 +165,12 @@ async def graphics(ctx):
 async def tron(ctx):
 	channel = ctx.message.channel
 	await bot.send_file(channel, "media/TRON_beginning.mp3")
+
+
+@bot.event
+async def on_message(msg):
+	if "NYA" in msg.content.upper():
+		await bot.add_reaction(msg, "😹")
+	await bot.process_commands(msg)
 
 bot.run(tokenVar)
