@@ -181,11 +181,4 @@ async def on_message(msg):
 		await bot.add_reaction(msg, "😹")
 	await bot.process_commands(msg)
 
-@bot.event
-async def on_message(msg):
-	if racismWord in msg.content.upper():
-		channel = msg.channel
-		await bot.send_message(channel, "WOOF")
-	await bot.process_commands(msg)
-
 bot.run(tokenVar)
