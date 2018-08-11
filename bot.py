@@ -6,7 +6,7 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from tokenFile import tokenVar
+from variables import *
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
@@ -145,7 +145,7 @@ async def source():
 
 
 @bot.command(pass_context=True)
-async def img(ctx, image: str):
+async def img(ctx, image: str): #pylint: disable=E0102
 	try:
 		channel = ctx.message.channel
 		await bot.send_file(channel, "media/" + image + ".jpg")
@@ -167,10 +167,25 @@ async def tron(ctx):
 	await bot.send_file(channel, "media/TRON_beginning.mp3")
 
 
+# @bot.command(pass_context=True)
+# async def update(ctx):
+# 	if ctx.author.id == "162586225952292864":
+# 		os.system("git pull")
+# 	else:
+# 		await bot.say("You are not authorized to use this command")
+
+
 @bot.event
 async def on_message(msg):
 	if "NYA" in msg.content.upper():
 		await bot.add_reaction(msg, "😹")
+	await bot.process_commands(msg)
+
+@bot.event
+async def on_message(msg):
+	if racismWord in msg.content.upper():
+		channel = msg.channel
+		await bot.send_message(channel, "WOOF")
 	await bot.process_commands(msg)
 
 bot.run(tokenVar)
