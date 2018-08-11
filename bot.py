@@ -44,7 +44,12 @@ async def help(ctx):
 
 @help.command()
 async def img():
-	embedHelpImg = discord.Embed(title="img command images:", description="parking, smooth, gated, eating, morning, smug, artery1, artery2, spaghetti", colour=0xFFFFFF)
+	images = os.listdir("media/img")
+	imagesStr = ""
+	for i in range(0,len(images)):
+		imagesStr = imagesStr + images[i].replace(".jpg", "") + ", "
+		print(imagesStr)
+	embedHelpImg = discord.Embed(title="img command images:", description=imagesStr[:-2], colour=0xFFFFFF)
 	embedHelpImg.set_author(name="JHbot", icon_url="http://niconiconii.co.uk/swan.jpg")
 	await bot.say(embed=embedHelpImg)
 
