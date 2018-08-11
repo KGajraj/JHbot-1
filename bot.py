@@ -2,11 +2,12 @@
 
 import os
 import sys
+import random
 import asyncio
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from variables import *
+from variableFile import *
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
@@ -60,12 +61,10 @@ async def on_message_edit(msgB, msgA):
 		embedEdit.colour = 0xffff00
 		embedEdit.add_field(name="Before", value=msgBefore, inline=False)
 		embedEdit.add_field(name="After", value=msgAfter, inline=False)
-	
 @bot.command()
 async def edit():
 	await bot.say(embed=embedEdit)
 
-# Bot replies "Pong!"
 @bot.command()
 async def ping():
 	await bot.say("Pong!")
@@ -162,17 +161,18 @@ async def graphics(ctx):
 
 
 @bot.command(pass_context=True)
+async def dab(ctx):
+	channel = ctx.message.channel
+	num = str(random.randint(1,4))
+	file = num + ".jpg"
+	await bot.send_file(channel, "media/dab/" + file)
+	
+
+
+@bot.command(pass_context=True)
 async def tron(ctx):
 	channel = ctx.message.channel
 	await bot.send_file(channel, "media/TRON_beginning.mp3")
-
-
-# @bot.command(pass_context=True)
-# async def update(ctx):
-# 	if ctx.author.id == "162586225952292864":
-# 		os.system("git pull")
-# 	else:
-# 		await bot.say("You are not authorized to use this command")
 
 
 @bot.event
