@@ -148,7 +148,7 @@ async def source():
 async def img(ctx, image: str): #pylint: disable=E0102
 	try:
 		channel = ctx.message.channel
-		await bot.send_file(channel, "media/" + image + ".jpg")
+		await bot.send_file(channel, "media/img/" + image + ".jpg")
 	except:
 		await bot.say("Image not found")
 
