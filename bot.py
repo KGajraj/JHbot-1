@@ -7,7 +7,7 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from variables import *
+from variables import tokenVar
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
@@ -164,8 +164,7 @@ async def graphics(ctx):
 @bot.command(pass_context=True)
 async def dab(ctx):
 	channel = ctx.message.channel
-	num = str(random.randint(1,4))
-	file = num + ".jpg"
+	file = random.choice(os.listdir("media/dab"))
 	await bot.send_file(channel, "media/dab/" + file)
 	
 
