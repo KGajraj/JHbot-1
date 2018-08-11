@@ -37,8 +37,9 @@ async def help(ctx):
 		embedHelp.add_field(name="serverinfo", value="Info about the server", inline=False)
 		embedHelp.add_field(name="edit", value="Most recently edited message", inline=False)
 		embedHelp.add_field(name="img", value="Sends an image", inline=False)
+		embedHelp.add_field(name="dab", value="Random dab", inline=False)
 		embedHelp.add_field(name="graphics", value="Graphics", inline=False)
-		embedHelp.add_field(name="github", value="Bot code", inline=False)
+		embedHelp.add_field(name="source", value="Bot code", inline=False)
 		await bot.say(embed=embedHelp)
 
 @help.command()
