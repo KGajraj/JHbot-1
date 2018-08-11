@@ -7,7 +7,7 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from variableFile import *
+from variables import *
 
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
@@ -167,7 +167,6 @@ async def dab(ctx):
 	file = num + ".jpg"
 	await bot.send_file(channel, "media/dab/" + file)
 	
-
 
 @bot.command(pass_context=True)
 async def tron(ctx):
